@@ -1,0 +1,15 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: guestbook
+spec:
+  host: guestbook-riadhplays.apps.cluster-9ppnm.dynamic.opentlc.com
+  to:
+    kind: Service
+    name: guestbook-ui
+  port:
+    targetPort: 8080
+  tls:
+    termination: reencrypt
+    insecureEdgeTerminationPolicy: Allow
+  wildcardPolicy: None
