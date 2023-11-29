@@ -1,9 +1,14 @@
-apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
 metadata:
-  name: deny-by-default
+  name: access-nginx
   namespace: etienneplays
 spec:
-  podSelector: {}
-  policyTypes:
-  - Ingress
+  podSelector:
+    matchLabels:
+      run: nginx2
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            run: access3
